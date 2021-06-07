@@ -1,4 +1,5 @@
 #! /bin/bash
+#JAVA_HOME=/opt/jdk/jdk1.8.0_162
 # sudo chmod 777 /etc/profile
 #filePath jdk下载包的路径
 filePath=~/Downloads
@@ -28,8 +29,8 @@ echo "解压完成"
 jdkName=$(cd /opt/jdk/jdk1.8.0_162 && pwd | awk -F "/" '{print $NF}')
 echo "jdk安装版本为${jdkName}"
 #echo "export JAVA_HOME=/home/${user}/jdk/jdk1.8.0_162" >> /etc/profile
-echo "export JAVA_HOME=//opt/jdk${jdkName}" >> /etc/profile
-echo "export PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile
+echo "export JAVA_HOME=/opt/jdk${jdkName}" >> /etc/profile
+echo "export PATH=$PATH:$JAVA_HOME/bin:" >> /etc/profile
 echo "export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar" >> /etc/profile
 #刷新使配置文件立即生效
 source /etc/profile
