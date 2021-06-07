@@ -16,19 +16,20 @@ java -verson > /dev/null 2>&1
 if [ $? != 0 ]
 then
 echo "没有安装jdk"
-mkdir ~/jdk
+sudo mkdir /opt/jdk
+sudo chmod 777 /opt/jdk
 echo "解压中"
 #tar -xzvf $filePath/jdk*.tar.gz -C ~/jdk
-tar -xzf $filePath/jdk*.tar.gz -C ~/jdk 
+tar -xzf $filePath/jdk*.tar.gz -C /opt/jdk
 echo "解压完成"
 #cd ~/jdk/jdk1.8.0_162
 # NF字段数量变量
 #pwd | awk -F "/" '{print $NF}'
-jdkName=$(cd ~/jdk/jdk1.8.0_162 && pwd | awk -F "/" '{print $NF}')
+jdkName=$(cd /opt/jdk/jdk1.8.0_162 && pwd | awk -F "/" '{print $NF}')
 echo "jdk安装版本为${jdkName}"
 #echo "export JAVA_HOME=/home/${user}/jdk/jdk1.8.0_162" >> /etc/profile
-echo "export JAVA_HOME=/home/${user}/jdk/${jdkName}" >> /etc/profile
-echo "export PATH=$PATH:$JAVA_HOME/bin" >> /etc/profile
+echo "export JAVA_HOME=//opt/jdk${jdkName}" >> /etc/profile
+echo "export PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile
 echo "export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar" >> /etc/profile
 #刷新使配置文件立即生效
 source /etc/profile
@@ -41,6 +42,4 @@ if [[ $? != 0 ]]; then
 	echo "已经安装jdk的版本高于1.8或者低于1.8"
 	echo "准备删除中...."
 fi
-
 fi
-
