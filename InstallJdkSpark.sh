@@ -9,7 +9,15 @@ then
 echo "后期运行spark会要求请输入登录用户密码！"
 #sudo chmod 777 /etc/profile
 sudo mkdir ~/Downloads
-scp sunyun@101.32.75.46:~Downloads ~/Downloads
+#echo -n "是否需要通过scp下载jdk和spark2文件 Y or N"
+#read INPUT
+#if [ $INPUT=Y -o $INPUT=y ]
+#then
+#	echo "密码内部使用..."
+#	scp sunyun@101.32.75.46:~Downloads ~/Downloads
+#else
+#	"请通过百度网盘下载到～Downloads目录下哦"
+#fi
 sudo chmod +x *.sh
 fi
 filePath=~/Downloads
@@ -54,13 +62,13 @@ function installSpark2(){
 	./stop-all.sh
 	echo "启动Spark中....."
 	./start-all.sh
-	cd /opt/apache-spark/spark-2.4.8-bin-hadoop2.7/bin
 }
 function installProcess(){
 	installJdk8
 	echo "开始安装spark2"
 	installSpark2
 	echo "spark2安装完成"
+	cd /opt/apache-spark/spark-2.4.8-bin-hadoop2.7/bin;spark-submit /home/user/stu-count.py
 	#echo "重启后java环境生效"
 }
 java -verson > /dev/null 2>&1
