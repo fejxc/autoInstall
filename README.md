@@ -13,11 +13,7 @@
 
 <img src="README/image-20210608215635534.png" alt="spark和jdk下载" style="zoom:50%;" />
 
-### 3.下载后移动安装包到～/Downloads目录下
-
-  ``mv jdk-8u162-linux-x64.tar.gz ~/Downloads``
-
-  ``mv spark-2.4.8-bin-hadoop2.7.tar ~/Downloads``
+### 3.下载后安装包到家的根目录～
 
 ### 4.执行脚本安装jdk8和spark2
 
@@ -25,7 +21,7 @@
 
 `` sudo chmod +x *.sh``
 
-``./sumInstall.sh``
+``./INstallJdkSpark.sh``
 
 ``sudo shutdown -r now``
 
@@ -35,9 +31,22 @@
 
 ### 5.重启后执行例子
 
-执行之前修改 word-count.py中的 input = sc.textFile(``"file://book.txt"``)改为自己本地的路径
+#### 5.1执行之前修改 word-count.py中的 input = sc.textFile(``"file://book.txt"``)改为自己本地的路径
 
 ``cd /opt/apache-spark/spark-2.4.8-bin-hadoop2.7/bin``
 
 ``./spark-submit   ~/autoInstall/word-count.py``
+
+#### 5.2执行之前修改 stu-count.py中
+
+```python
+people = spark.read.option("header", "true").option("inferSchema", "true")\
+    .csv("file:///home/happy/Downloads/data")
+```
+
+``happy``改为自己的登录用户名
+
+运行 stu-count.py之前确保安装了python2.7+
+
+``sudo apt install python`` 安装python2.7
 
