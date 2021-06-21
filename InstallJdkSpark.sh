@@ -9,6 +9,10 @@ then
 echo "后期运行spark会要求请输入登录用户密码！"
 #sudo chmod 777 /etc/profile
 sudo mkdir ~/Downloads
+sudo mv jdk-8u162-linux-x64.tar.gz Downloads/
+sudo mv spark-2.4.8-bin-hadoop2.7.tar Downloads/
+sudo cp -r data Downloads/
+#sudo apt install python
 #echo -n "是否需要通过scp下载jdk和spark2文件 Y or N"
 #read INPUT
 #if [ $INPUT=Y -o $INPUT=y ]
@@ -22,8 +26,9 @@ sudo chmod +x *.sh
 fi
 filePath=~/Downloads
 function installJdk8(){
-	sudo mkdir /opt/jdk
+	sudo mkdir -p /opt/jdk
 	sudo chmod 777 /opt/jdk
+	echo "安装jdk中...."
 	echo "解压中"
 	#tar -xzvf $filePath/jdk*.tar.gz -C ~/jdk
 	tar -xzf $filePath/jdk*.tar.gz -C /opt/jdk
@@ -43,7 +48,7 @@ function installJdk8(){
 	echo "jdk8安装完成"
 }
 function installSpark2(){
-	sudo mkdir /opt/apache-spark
+	sudo mkdir -p /opt/apache-spark
 	sudo chmod 777 /opt/apache-spark
 	echo "解压中"
 	tar -xvf $filePath/spark*.tar -C /opt/apache-spark
