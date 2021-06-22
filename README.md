@@ -21,7 +21,7 @@
 
 `` sudo chmod +x *.sh``
 
-``./INstallJdkSpark.sh``
+``./InstallJdkSpark.sh``
 
 ``sudo shutdown -r now``
 
